@@ -4,7 +4,7 @@ from torch import nn, optim
 import torchvision
 import torchvision.transforms as transforms
 from model import NeuralNetwork
-from ignite.engine import Events, create_supervised_evaluator
+from ignite.engine import Events
 from ignite.metrics import *
 from ignite.handlers import ModelCheckpoint, global_step_from_engine
 from ignite.engine import Engine
@@ -40,10 +40,8 @@ validation_loader = torch.utils.data.DataLoader(validation_set, batch_size=256)
 device = "cuda" if torch.cuda.is_available() else "cpu"
 print(f"Using {device} for training")
 
-print(training_set.data[0].shape[0])
-
 # Cria o modelo
-model = NeuralNetwork((28,28)).to(device)
+model = NeuralNetwork(training_set.data[0].shape).to(device)
 
 # Definindo criterion e optmizer
 # https://notebook.community/jmhsi/justin_tinker/data_science/courses/temp/courses/ml1/lesson4-mnist_sgd
@@ -121,11 +119,16 @@ def startMessage():
 def endMessage():
     print("Training completed!")
 
+# Após cada epoch, realiza um processo de validação
+@trainer.on(Events.EPOCH_COMPLETED)
+def runValidation():
+    evaluator.run(validation_loader)
+
 # Mostra as métricas após cada processo de validação
 @evaluator.on(Events.COMPLETED)
 def log_validation_results():
     metrics = evaluator.state.metrics
-    print("\n\nValidation Results - Epoch: {}  Avg accuracy: {:.2f} Avg loss: {:.2f} Avg F1: {:.2f} Precision: {:.2f} Recall {:.2f}\n"
+    print("\n\nValidation Results - Epoch: {}\nAccuracy: {:.3f}\nLoss: {:.3f}\nF1: {:.3f}\nPrecision: {:.3f}\nRecall {:.3f}\n\n"
         .format(trainer.state.epoch, metrics["accuracy"], metrics["loss"], metrics["f1"], metrics["precision"], metrics["recall"]))
 
 # Adiciona uma barra de progresso apenas para melhor visualizar como o treinamento está indo :^)
