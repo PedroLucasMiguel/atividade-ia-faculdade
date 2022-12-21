@@ -9,6 +9,9 @@ from ignite.metrics import *
 from ignite.handlers import ModelCheckpoint, global_step_from_engine
 from ignite.engine import Engine
 from ignite.contrib.handlers import ProgressBar
+import json
+
+metrics_json = {}
 
 # Transformação padrão para todos os datasets
 transform = transforms.Compose([transforms.ToTensor()])
@@ -130,6 +133,13 @@ def log_validation_results():
     metrics = evaluator.state.metrics
     print("\n\nValidation Results - Epoch: {}\nAccuracy: {:.3f}\nLoss: {:.3f}\nF1: {:.3f}\nPrecision: {:.3f}\nRecall {:.3f}\n\n"
         .format(trainer.state.epoch, metrics["accuracy"], metrics["loss"], metrics["f1"], metrics["precision"], metrics["recall"]))
+    
+    metrics_json[trainer.state.epoch] = {
+        "Accuracy": metrics["accuracy"],
+        "Loss": metrics["loss"],
+        "Precision": metrics["precision"],
+        "Recall": metrics["recall"]
+        }
 
 # Adiciona uma barra de progresso apenas para melhor visualizar como o treinamento está indo :^)
 ProgressBar().attach(trainer, output_transform=lambda x: {'batch loss': x})
@@ -155,4 +165,7 @@ evaluator.add_event_handler(Events.COMPLETED, model_checkpoint, {"model": model}
 
 # Começa o treinamento em si \O/
 trainer.run(train_loader, max_epochs=50)
+
+with open(os.path.join(".", "results.json"), "w") as json_file:
+    json.dump(metrics_json, json_file)
 

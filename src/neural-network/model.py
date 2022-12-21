@@ -23,8 +23,6 @@ class NeuralNetwork(nn.Module):
             nn.ReLU(),
             nn.Linear(16, 16), # Segunda Hidden Layer
             nn.ReLU(),
-            nn.Linear(16, 16), # Segunda Hidden Layer
-            nn.ReLU(),
             nn.Linear(16, 10) # Camada de saída
         )
 
