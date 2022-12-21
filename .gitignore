@@ -1,1 +1,4 @@
 venv
+src/neural-network/MNIST
+src/neural-network/model_checkpoint
+src/neural-network/__pycache__
