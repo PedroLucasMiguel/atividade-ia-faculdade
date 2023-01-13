@@ -1,8 +1,6 @@
 from sklearn import tree
 
-from sklearn.tree import BaseDecisionTree
-
-ClassifierType = BaseDecisionTree | None  # TODO: Add SVM
+ClassifierType = tree.DecisionTreeClassifier | None  # TODO: Add SVM
 
 
 class ClassifierHandler:
@@ -36,11 +34,8 @@ class ClassifierHandler:
         return confusion_matrix(self._true, self._pred)
 
     def calculate_loss(self) -> float:
-        from sklearn.metrics import log_loss
-        # log_loss is defined for probabilistic classification only
-        # TODO: Decide what to do here
-        # return log_loss(self._true, self._pred)
-        return 0.0
+        from sklearn.metrics import zero_one_loss
+        return zero_one_loss(self._true, self._pred, normalize=True)
 
 
 def main():
@@ -48,12 +43,7 @@ def main():
     handler = ClassifierHandler(tree_classifier)
     print(handler.make_classification_report())
     print(handler.make_confusion_matrix())
-    print(f"""
-        |       | i
-        
-        | |     | _
-        : {handler.calculate_loss()}
-    """)
+    print(f'Loss: {handler.calculate_loss()}')
 
 
 if __name__ == '__main__':
