@@ -138,8 +138,9 @@ def log_validation_results():
         "Accuracy": metrics["accuracy"],
         "Loss": metrics["loss"],
         "Precision": metrics["precision"],
-        "Recall": metrics["recall"]
-        }
+        "Recall": metrics["recall"],
+        "F1": metrics["f1"],
+    }
 
 # Adiciona uma barra de progresso apenas para melhor visualizar como o treinamento está indo :^)
 ProgressBar().attach(trainer, output_transform=lambda x: {'batch loss': x})
