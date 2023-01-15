@@ -1,6 +1,6 @@
 from sklearn import tree
 
-from common.ClassifierHandler import ClassifierHandler
+from ClassifierHandler import ClassifierHandler
 
 MODEL_NAME = 'decision_tree'
 

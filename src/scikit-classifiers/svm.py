@@ -1,6 +1,6 @@
 from sklearn import svm
 
-from common.ClassifierHandler import ClassifierHandler
+from ClassifierHandler import ClassifierHandler
 
 MODEL_NAME = 'support_vector_machine'
 
