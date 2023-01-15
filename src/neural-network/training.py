@@ -153,7 +153,7 @@ def score_function(engine):
 # Salva o treinamento da rede baseado no resultado da medida F1
 # Essa etapa previne que salvemos treinamentos que estão apontando overfitting :^D
 model_checkpoint = ModelCheckpoint(
-    "model_checkpoint",
+    "../../generated/models",
     filename_prefix="best",
     score_function=score_function,
     score_name="f1",
@@ -167,6 +167,6 @@ evaluator.add_event_handler(Events.COMPLETED, model_checkpoint, {"model": model}
 # Começa o treinamento em si \O/
 trainer.run(train_loader, max_epochs=50)
 
-with open(os.path.join(".", "results.json"), "w") as json_file:
+with open(os.path.join("../../generated/results", "neural_network1.json"), "w") as json_file:
     json.dump(metrics_json, json_file)
 

@@ -14,7 +14,7 @@ validation_set = torchvision.datasets.MNIST(
     root=os.path.join("."), 
     train=False,
     transform=transform, 
-    download=False
+    download=True
     )
 
 # Loader com batch size 1 para que todas as imagens sejam percorridas em um loop
@@ -28,7 +28,7 @@ print(f"Using {device} for training")
 model = NeuralNetwork(validation_set.data[0].shape)
 
 # Carrega o melhor treinamento
-model.load_state_dict(torch.load(os.path.join("model_checkpoint", "best_model_45_f1=0.9283.pt")))
+model.load_state_dict(torch.load(os.path.join("../../generated/models", "neural_network.pt")))
 
 model = model.to(device)
 
