@@ -1,4 +1,4 @@
-from sklearn import tree
+from sklearn import tree, svm
 
 from sklearn.datasets import load_digits
 from sklearn.model_selection import train_test_split
@@ -7,7 +7,7 @@ from sklearn.metrics import confusion_matrix
 from sklearn.metrics import zero_one_loss
 from joblib import dump
 
-ClassifierType = tree.DecisionTreeClassifier | None  # TODO: Add SVM
+ClassifierType = tree.DecisionTreeClassifier | svm.SVC
 
 
 class ClassifierHandler:
