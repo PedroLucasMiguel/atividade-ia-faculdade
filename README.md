@@ -33,14 +33,18 @@ O projeto está organizado da seguinte forma:
 
 Em uma instância do Python em sua versão 3.10, na raiz do projeto, execute os seguintes comandos:
 
-- Instalação Scikit-learn
-    pip install -r scikit-requirements.txt
+- Instalação Scikit-learn:
+```shell
+pip install -r scikit-requirements.txt
+````
 
-- Instalação do Pytorch
-  - Para realizar a instalção do Pytorch é recomendado que siga as instruções fornecidas [aqui](https://pytorch.org/get-started/locally/)
+- Instalação do Pytorch:
+  - Para realizar a instalção do Pytorch é recomendado que siga as instruções fornecidas [aqui.](https://pytorch.org/get-started/locally/)
 
-- Instalação do Pytorch-ignite
-    pip install pytorch-ignite
+- Instalação do Pytorch-ignite:
+```shell
+pip install pytorch-ignite
+```
 
 ## Executando o projeto
 
@@ -51,17 +55,24 @@ Para executar cada um dos classificadores, primeiro certifique-se que você est�
 - `src/support-vector-machine/` -> SVM
 
 - Executar o classificador "decision-tree" (resultados exportados para `generated/results/decicion-tree.txt`):
-    python main.py
+```shell
+python main.py
+```
 
 - Treinar a "neural-network" (resultados exportados para `generated/results/neural-network.json`):
-    python training.py
+```shell
+python training.py
+```
 
 - Classificar com a "neural-network" (resultados no terminal):
-    python classify.py
+```shell
+python classify.py
+```
 
 - Executar o classificador "support-vector-machine/" (resultados exportados para `generated/results/"support-vector-machine.txt`);
-    python main.py
-
+```shell
+python main.py
+```
 
 
     
