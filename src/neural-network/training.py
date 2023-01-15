@@ -167,6 +167,6 @@ evaluator.add_event_handler(Events.COMPLETED, model_checkpoint, {"model": model}
 # Começa o treinamento em si \O/
 trainer.run(train_loader, max_epochs=50)
 
-with open(os.path.join("../../generated/results", "neural_network1.json"), "w") as json_file:
+with open(os.path.join("../../generated/results", "neural_network.json"), "w") as json_file:
     json.dump(metrics_json, json_file)
 
