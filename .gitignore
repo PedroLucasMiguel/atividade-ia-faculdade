@@ -1,3 +1,4 @@
-venv
+venv/
+.idea/
 src/neural-network/MNIST
 src/neural-network/__pycache__
