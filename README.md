@@ -26,8 +26,8 @@ O projeto está organizado da seguinte forma:
 ## Especificações do projeto
 
 - Ambiente Python em sua versão 3.10 (versões diferentes à indicada não foram testadas, e podem causar instabilidades);
-- `Pytorch e Pytorch-ignite`
-- `Scikit-learn`
+- `Pytorch e Pytorch-ignite`;
+- `Scikit-learn`;
 
 ### Criando ambiente para execução
 
@@ -36,7 +36,7 @@ Em uma instância do Python em sua versão 3.10, na raiz do projeto, execute os 
 - Instalação Scikit-learn:
 ```shell
 pip install -r scikit-requirements.txt
-````
+```
 
 - Instalação do Pytorch:
   - Para realizar a instalção do Pytorch é recomendado que siga as instruções fornecidas [aqui.](https://pytorch.org/get-started/locally/)
